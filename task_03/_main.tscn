@@ -1,3 +1,147 @@
-[gd_scene format=3 uid="uid://c4ahb753junmv"]
+[gd_scene load_steps=11 format=3 uid="uid://c4ahb753junmv"]
+
+[ext_resource type="Texture2D" uid="uid://b03vj2422xdfs" path="res://task_03/vfx_fire.jpg" id="1_4uuhh"]
+[ext_resource type="Script" path="res://task_03/ControllerRoot.gd" id="1_xq6gv"]
+[ext_resource type="Script" path="res://task_03/ControllerSys01.gd" id="3_hjajr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t1rjd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s68vm"]
+albedo_color = Color(0.137255, 0.196078, 0.129412, 1)
+
+[sub_resource type="Animation" id="Animation_rqhqu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Fire/FireSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Fire/FireLight:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_3nyod"]
+resource_name = "amin_fire"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Fire/FireSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Fire/FireLight:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.965, 1.395, 0.88, 1.541, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_py6bm"]
+_data = {
+"RESET": SubResource("Animation_rqhqu"),
+"amin_fire": SubResource("Animation_3nyod")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybnrc"]
+transparency = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_oc6dt"]
+material = SubResource("StandardMaterial3D_ybnrc")
 
 [node name="_main" type="Node3D"]
+script = ExtResource("1_xq6gv")
+
+[node name="_ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_t1rjd")
+surface_material_override/0 = SubResource("StandardMaterial3D_s68vm")
+
+[node name="EnvLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.267877, 0.963453, 0, -0.963453, 0.267877, 0, 0, 0)
+light_color = Color(0.231373, 0.188235, 0.45098, 1)
+shadow_enabled = true
+
+[node name="Fire" type="Node3D" parent="."]
+
+[node name="FireSprite" type="Sprite3D" parent="Fire"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.58, 0)
+cast_shadow = 0
+texture = ExtResource("1_4uuhh")
+hframes = 7
+vframes = 2
+region_enabled = true
+region_rect = Rect2(249.417, 126.851, 5442.52, 2765.81)
+
+[node name="FirePlayer" type="AnimationPlayer" parent="Fire"]
+root_node = NodePath("../../Origin")
+libraries = {
+"": SubResource("AnimationLibrary_py6bm")
+}
+
+[node name="FireLight" type="OmniLight3D" parent="Fire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78619, 0)
+light_color = Color(0.686275, 1, 0.388235, 1)
+light_specular = 0.246
+omni_range = 2.179
+omni_attenuation = 1.7411
+
+[node name="Origin" type="Node3D" parent="."]
+script = ExtResource("3_hjajr")
+speedAngle = 3.14
+intervalDelaySec = 0.25
+intervalFadeSec = 1.0
+
+[node name="InstLeading" type="MeshInstance3D" parent="Origin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.765, 0.58, 0)
+mesh = SubResource("SphereMesh_oc6dt")
+
+[node name="CameraTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.977268, 0.212007, 0, -0.212007, 0.977268, 0, 0.92936, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -9.53674e-07, 3.29885)
+fov = 52.6
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.862
+anchor_top = 0.864
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0240479
+offset_top = 0.127991
+offset_right = -20.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_back_pressed"]

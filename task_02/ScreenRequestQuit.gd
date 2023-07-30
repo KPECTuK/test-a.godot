@@ -5,6 +5,15 @@ var mapCommandDocarator = {
 	"cmd_reject": "cmd_initial",
 }
 
+
+func get_button_text_for_command(command: String) -> String:
+	if command == "cmd_accept":
+		return "да"
+	if command == "cmd_reject":
+		return "нет"
+	return command
+
+
 func on_event_received(source: Control, commandName: String):
 	print("event received: '%s' %s" % [ commandName, source ])
 	if not commandName in mapCommandDocarator.keys():

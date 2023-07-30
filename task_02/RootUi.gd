@@ -4,6 +4,7 @@ var protoScreenMain = preload("res://task_02/ScreenMain.tscn")
 var protoScreenRequestQuit = preload("res://task_02/ScreenRequestQuit.tscn")
 var protoScreenRequestScene = preload("res://task_02/ScreenRequestScene.tscn")
 var protoVfx = preload("res://task_02/VfxButton.tscn")
+var protoScreenScene = preload("res://task_03/_main.tscn")
 
 var screenCurrent: Control = null
 var mapCommands = {
@@ -65,6 +66,11 @@ func command_request_scene(_source: Control):
 
 func command_request_scene_accept(_source: Control):
 	print("request scene")
+	var parent = get_parent()
+	while parent != null && not 'reload_scene' in parent:
+		parent = parent.get_parent()
+	if parent != null:
+		parent.call('reload_scene')
 
 
 func command_request_button_swap(_source: Control):
