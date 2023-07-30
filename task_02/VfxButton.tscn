@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxga28om7qr4s"]
+
+[ext_resource type="Texture2D" uid="uid://cxvi5nxn10jd1" path="res://task_02/vfx_tex.png" id="1_yur6r"]
+
+[sub_resource type="Curve" id="Curve_vqoji"]
+_data = [Vector2(0, 0), 0.0, 3.14277, 0, 0, Vector2(1, 0.910891), -0.594059, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4q78p"]
+offsets = PackedFloat32Array(0, 0.617582, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.666667, 0.415686, 0.415686, 0.466667, 0.34902, 0.099986, 0.099986, 0.099986, 0)
+
+[node name="ButtonVfx" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 28
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.87
+randomness = 0.53
+lifetime_randomness = 0.7
+texture = ExtResource("1_yur6r")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 160.0
+initial_velocity_max = 200.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+linear_accel_min = -120.0
+linear_accel_max = -80.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_curve = SubResource("Curve_vqoji")
+color_ramp = SubResource("Gradient_4q78p")

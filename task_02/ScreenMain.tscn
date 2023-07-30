@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnhtx4ng8s8hl"]
+
+[ext_resource type="Theme" uid="uid://daoy4tv1higr3" path="res://task_02/default_theme.tres" id="1_0n5bm"]
+[ext_resource type="Script" path="res://task_02/ButtonSignal.gd" id="1_5jqmk"]
+
+[node name="ScreenMain" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0n5bm")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0n5bm")
+columns = 2
+
+[node name="CountainerButton01" type="CenterContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_0n5bm")
+
+[node name="Button01" type="Button" parent="GridContainer/CountainerButton01"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+theme = ExtResource("1_0n5bm")
+text = "Button 1 (scene)"
+script = ExtResource("1_5jqmk")
+command_name = "cmd_request_scene"
+
+[node name="ContainerButton02" type="CenterContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_0n5bm")
+
+[node name="Button02" type="Button" parent="GridContainer/ContainerButton02"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+theme = ExtResource("1_0n5bm")
+text = "Button 2 (swap)"
+script = ExtResource("1_5jqmk")
+command_name = "cmd_request_button_swap"
+
+[node name="ContainerButton03" type="CenterContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_0n5bm")
+
+[node name="Button03" type="Button" parent="GridContainer/ContainerButton03"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+theme = ExtResource("1_0n5bm")
+text = "Button 3 (vfx)"
+script = ExtResource("1_5jqmk")
+command_name = "cmd_request_vfx"
+
+[node name="ContainerButton04" type="CenterContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_0n5bm")
+
+[node name="Button04" type="Button" parent="GridContainer/ContainerButton04"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+theme = ExtResource("1_0n5bm")
+text = "Button 4 (quit)"
+script = ExtResource("1_5jqmk")
+command_name = "cmd_request_quit"
+
+[connection signal="pressed" from="GridContainer/CountainerButton01/Button01" to="GridContainer/CountainerButton01/Button01" method="_on_pressed"]
+[connection signal="pressed" from="GridContainer/ContainerButton02/Button02" to="GridContainer/ContainerButton02/Button02" method="_on_pressed"]
+[connection signal="pressed" from="GridContainer/ContainerButton03/Button03" to="GridContainer/ContainerButton03/Button03" method="_on_pressed"]
+[connection signal="pressed" from="GridContainer/ContainerButton04/Button04" to="GridContainer/ContainerButton04/Button04" method="_on_pressed"]

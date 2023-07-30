@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcvj35oqfr2f"]
+
+[ext_resource type="Script" path="res://task_02/RootUi.gd" id="1_56mk2"]
+
+[node name="_main" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_56mk2")

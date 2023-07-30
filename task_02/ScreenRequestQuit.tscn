@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0pjq5qmdmgil"]
+
+[ext_resource type="Script" path="res://task_02/ScreenRequestQuit.gd" id="1_bwy30"]
+[ext_resource type="PackedScene" uid="uid://d15qfhkupf15e" path="res://task_02/DialogAccept.tscn" id="1_ddhtd"]
+[ext_resource type="Theme" uid="uid://daoy4tv1higr3" path="res://task_02/default_theme.tres" id="1_mqsw3"]
+
+[node name="ScreenRequestQuit" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mqsw3")
+script = ExtResource("1_bwy30")
+
+[node name="DialogAccept" parent="." instance=ExtResource("1_ddhtd")]
+layout_mode = 1

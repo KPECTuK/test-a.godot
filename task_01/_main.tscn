@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ded6s33hf7ilc"]
+
+[ext_resource type="PackedScene" uid="uid://dmxskreetvt0i" path="res://task_01/Pawn.tscn" id="1_ste5o"]
+[ext_resource type="Script" path="res://task_01/ControllerPawn.gd" id="1_uh873"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_v4vhn"]
+
+[node name="_main" type="Node3D"]
+script = ExtResource("1_uh873")
+
+[node name="Pawn" parent="." instance=ExtResource("1_ste5o")]
+transform = Transform3D(0.845914, 0, 0.533319, 0, 1, 0, -0.533319, 0, 0.845914, 5.42444, 0, 5.00785)
+
+[node name="CameraTarget" type="Node3D" parent="."]
+transform = Transform3D(-0.275637, 0.513652, -0.812518, 0, 0.845262, 0.534352, 0.961262, 0.147287, -0.232986, 5, 0, 5)
+
+[node name="Camera" type="Camera3D" parent="CameraTarget"]
+transform = Transform3D(1, 1.49012e-08, -1.49012e-08, 0, 1, 3.35276e-08, 0, 3.72529e-09, 1, -2.6226e-06, 2.6226e-06, 15.3764)
+fov = 37.7236
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.681641, -0.483624, 0.549066, -2.98023e-08, 0.750411, 0.660971, -0.731687, -0.450545, 0.511511, 0, 0, 0)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 5, 0, 5)
+mesh = SubResource("QuadMesh_v4vhn")
